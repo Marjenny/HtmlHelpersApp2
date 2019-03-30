@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace HtmlHelpersApp2.Models
 {
@@ -18,7 +19,7 @@ namespace HtmlHelpersApp2.Models
         public string Nombre { get; set; }
         [Required]
         public string Apellido { get; set; }
-        [Range(15,99, ErrorMessage =" Error, Tiene que ser mayor de 15" )]
+        [Range(15,99, ErrorMessage ="Error, Tiene que ser mayor de 15" )]
         public int Edad { get; set; }
         [Phone]
         public string Telefono { get; set; }
@@ -38,4 +39,14 @@ namespace HtmlHelpersApp2.Models
         Masculino,
         Femenino
     }
+
+     public class ClienteContext : DbContext
+    {
+        public ClienteContext(DbContextOptions<ClienteContext> options): base(options)
+        {
+
+        }
+            public DbSet<Cliente> Clientes { get; set; }
+    }
+
 }
